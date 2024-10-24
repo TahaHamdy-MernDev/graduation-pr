@@ -1,8 +1,14 @@
 import ClientsChart from "../components/chart/ClientsChart";
 import ProductsBarChart from "../components/chart/ProductsBarChart";
-import TrafficByLocation from "../components/chart/TrafficByLocation";
 import MostProducts from "../components/MostProducts";
 import StatsCards from "../components/StatCard";
+import PieChartComponent from "../components/chart/PieChart";
+const data = [
+  { name: "Alex", value: 38.6 },
+  { name: "Giza", value: 22.5 },
+  { name: "Helwan", value: 30.8 },
+  { name: "Fayom", value: 8.1 },
+];
 
 export default function Overview() {
   return (
@@ -42,7 +48,7 @@ export default function Overview() {
             <ProductsBarChart />
           </div>
           <div className="col-md-6">
-            <TrafficByLocation />
+            <PieChartComponent data={data} title={"Traffic by Location"} />
           </div>
         </div>
       </div>

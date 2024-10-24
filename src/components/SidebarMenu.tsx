@@ -13,7 +13,7 @@ const SidebarMenu: React.FC = () => {
 
   const menuItems = {
     userProfile: [
-      { path: "", name: "Overview" },
+      { path: "profile", name: "Overview" },
       { path: "products", name: "Products" },
       { path: "", name: "Campaigns" },
       { path: "", name: "Documents" },

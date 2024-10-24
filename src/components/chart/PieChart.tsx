@@ -4,29 +4,28 @@ import {
   Pie,
   Cell,
   ResponsiveContainer,
-  Legend,
   Tooltip,
 } from "recharts";
-
-const data = [
-  { name: "Alex", value: 38.6 },
-  { name: "Giza", value: 22.5 },
-  { name: "Helwan", value: 30.8 },
-  { name: "Fayom", value: 8.1 },
-];
+export interface IChartData {
+  data: { name: string; value: number }[];
+  title: string;
+}
 
 const COLORS = ["#1f2937", "#99f6e4", "#7dd3fc", "#cbd5e1"];
 
-const TrafficByLocation: React.FC = () => {
+const PieChartComponent: React.FC<IChartData> = ({
+  data,
+  title ,
+}) => {
   return (
     <div
       className="card rounded-4 border-0"
       style={{ background: "#F7F9FB", padding: "20px" }}
     >
       <div className="card-body p-0 ">
-        <h6 className="card-title mb-0 mb-3 fw-semibold" >
-          Traffic by Location
-        </h6>
+        {title ? (
+          <h6 className="card-title mb-0 mb-3 fw-semibold">{title}</h6>
+        ) : null}
         <div
           style={{
             display: "flex",
@@ -41,10 +40,9 @@ const TrafficByLocation: React.FC = () => {
                   data={data}
                   cx="50%"
                   cy="50%"
-              
-                  innerRadius={60} 
-                  outerRadius={100} 
-                  stroke="#ffffff" 
+                  innerRadius={60}
+                  outerRadius={100}
+                  stroke="#ffffff"
                   strokeWidth={0}
                   radius={4}
                   fill="#8884d8"
@@ -55,8 +53,8 @@ const TrafficByLocation: React.FC = () => {
                     <Cell
                       key={`cell-${index}`}
                       fill={COLORS[index % COLORS.length]}
-                    radius={4}
-                    stroke="55px"
+                      radius={4}
+                      stroke="55px"
                     />
                   ))}
                 </Pie>
@@ -64,31 +62,34 @@ const TrafficByLocation: React.FC = () => {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div style={{width:'40%'}}>
+          <div style={{ width: "40%" }}>
             {data.map((item, index) => (
-              <div key={index} className="d-flex justify-content-between align-items-center mb-2">
+              <div
+                key={index}
+                className="d-flex justify-content-between align-items-center mb-2"
+              >
                 <span>
-                <span
-                  style={{
-                    display: "inline-block",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: COLORS[index],
-                    borderRadius: "50%",
-                    marginRight: "8px",
-                  }}
-                ></span>
-                <span
-                  style={{
-                    color: "#1c1c1c",
-                    fontSize: "14px",
-                    marginRight: "5px",
-                  }}
-                >
-                  {item.name}
-                </span>      
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: "8px",
+                      height: "8px",
+                      backgroundColor: COLORS[index],
+                      borderRadius: "50%",
+                      marginRight: "8px",
+                    }}
+                  ></span>
+                  <span
+                    style={{
+                      color: "#1c1c1c",
+                      fontSize: "14px",
+                      marginRight: "5px",
+                    }}
+                  >
+                    {item.name}
+                  </span>
                 </span>
-              
+
                 <span style={{ color: "#6c757d", fontSize: "14px" }}>
                   {item.value}%
                 </span>
@@ -101,4 +102,4 @@ const TrafficByLocation: React.FC = () => {
   );
 };
 
-export default TrafficByLocation;
+export default PieChartComponent;
